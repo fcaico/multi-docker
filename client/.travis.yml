@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t fcaico/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t fcaico/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true fcaico/react-test npm test -- --coverage
+  - docker run -e CI=true fcaico/multi-docker npm test -- --coverage
 
 after_success:
   - docker build -t fcaico/multi-client ./client
