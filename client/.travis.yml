@@ -2,14 +2,10 @@ language: generic
 sudo: required
 services:
   - docker
-
 before_install:
-  - gem install bundler
   - docker build -t fcaico/multi-docker -f ./client/Dockerfile.dev ./client
-
 script:
   - docker run -e CI=true fcaico/multi-docker npm test -- --coverage
-
 after_success:
   - docker build -t fcaico/multi-client ./client
   - docker build -t fcaico/multi-nginx ./nginx
